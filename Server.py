@@ -34,7 +34,10 @@ photoStoragePath='/storage/emulated/0/qpython/tmp/' # You can change where the p
 
 socketSendCommands = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socketSendCommands.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-socketSendCommands.bind((serverAddress,serverPort))
+try:
+    socketSendCommands.bind((serverAddress,serverPort))
+except:
+    print("already connected")
 socketSendCommands.listen(1)
 print("Sever {ip} opened at port {port}\n".format(ip=serverAddress,port=serverPort))
 (connection, address) = socketSendCommands.accept()

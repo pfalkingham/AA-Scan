@@ -1,6 +1,6 @@
 # AAScan: Open source, minimalist, fully automated 3D scanner based on Arduino and Android!
 
-# Server program - To be run on computer (I recommend LINUX)
+# Client program - To be run on computer (I recommend LINUX) 
 
 # Copyright (C) 2020 redditNewUser2017
 # Check out my page https://www.reddit.com/user/redditNewUser2017 and my subreddit https://www.reddit.com/r/Simulations/
@@ -20,23 +20,34 @@
 
 import serial,time
 import socket
+import sys
 
-serverAddressList=[""]    # Put your Phone IP here, multiple IPs are supported now (untested)!
+serverAddressList=["192.168.8.100"]    # Put your Phone IP here, multiple IPs are supported now (untested)!
 serverPort=2021
 bufferSize=12
 nPhotos=180                      # How many photos do you want? (~180 for best quality)
+fileName='image'
+if len(sys.argv) >= 2:
+    fileName = sys.argv[1]
 
-serialConnection = serial.Serial('/dev/ttyACM0',9600)   # Change this to COMx if you are on Windows, COMx is the port where Arduino serial is connected
+print("using Filename {fname}".format(fname=fileName))
+
+
+serialConnection = serial.Serial('COM3',9600)   # Change this to COMx if you are on Windows, COMx is the port where Arduino serial is connected
 print("Serial connection established on {name}".format(name=serialConnection.name))
 time.sleep(3)
 serialConnection.write((str(nPhotos)+"\n").encode())
 time.sleep(1)
 
+#print("server? {server}")
+
 socketList=[]
 for server in serverAddressList:
+    print("about to connect on {this}".format(this=server))
     socketSendCommands = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socketSendCommands.connect((server,serverPort))
     socketList.append(socketSendCommands)
+    socketSendCommands.send(fileName.encode())
 
 for i in range(nPhotos):
     for socketSendCommands in socketList:

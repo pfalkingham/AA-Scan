@@ -22,15 +22,17 @@ import androidhelper
 import time
 import socket
 
+
 droid = androidhelper.Android()
 droid.wakeLockAcquireDim()
 
 dataReceived=""
+fileName="image"
 i=1
-serverAddress=""    # Put your Phone IP here
+serverAddress="192.168.8.100"    # Put your Phone IP here
 serverPort=2021
 bufferSize=12
-photoStoragePath='/storage/emulated/0/qpython/tmp/' # You can change where the photos are stored here!
+photoStoragePath='/storage/emulated/0/photog/' # You can change where the photos are stored here!
 
 socketSendCommands = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socketSendCommands.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -49,13 +51,16 @@ try:
         if dataReceived!="":
             if dataReceived=="chez":
                 path = photoStoragePath
-                path += str(i)
-                path += '.png'
+                path += fileName
+                path += '_'+str(i)
+                path += '.png'          #20/3/20 can this be jpg?  any difference?
                 droid.cameraCapturePicture(path, True)
                 print("{count} photos taken!".format(count=i))
                 i=i+1
-            if dataReceived=="quit":
+            elif dataReceived=="quit":
                 break
+            else:
+                fileName = dataReceived
 except:
     pass
 

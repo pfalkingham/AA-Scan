@@ -10,11 +10,11 @@ This is an open source project. Suggestions are welcome!
 # Falkingham branch:
 Client is now run on computer as:
 
-$python client.py <imagename>
+$python client.py \<imagename\> \<image number\>
 
-if the argument is not provided, photos will be named imageX, but if the argument is provided, images will be named <imagename>X
+if the arguments are not provided, photos will be named imageX, and the system will rotate the turntable 50 times. If the arguments aer provided, images on the phone will be named \<imagename\>\<number\>, and it will take as many photos as you ask it to.
 
-This means you can turn an object over, run the script again with a different name, and not overwrite the first files.
+This means you can turn an object over, run the script again with a different name, and not overwrite the first files. You can also take more or less photos easily.
 
 ***
 

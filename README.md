@@ -12,7 +12,7 @@ Client is now run on computer as:
 
 $python client.py \<imagename\> \<image number\>
 
-if the arguments are not provided, photos will be named imageX, and the system will rotate the turntable 50 times. If the arguments aer provided, images on the phone will be named \<imagename\>\<number\>, and it will take as many photos as you ask it to.
+if the arguments are not provided, photos will be named imageX, and the system will rotate the turntable 50 times. If the arguments are provided, images on the phone will be named \<imagename\>\<number\>, and it will take as many photos as you ask it to.
 
 This means you can turn an object over, run the script again with a different name, and not overwrite the first files. You can also take more or less photos easily.
 

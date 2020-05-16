@@ -50,17 +50,20 @@ try:
         dataReceived=connection.recv(bufferSize).decode()
         if dataReceived!="":
             if dataReceived=="chez":
+                #print("chezrecieved") # debug message
                 path = photoStoragePath
                 path += fileName
                 path += '_'+str(i)
-                path += '.png'          #20/3/20 can this be jpg?  any difference?
+                path += '.jpg'          #20/3/20 can this be jpg?  any difference? 16/5/20 yes it can, and then thigns display properly.
                 droid.cameraCapturePicture(path, True)
                 print("{count} photos taken!".format(count=i))
                 i=i+1
             elif dataReceived=="quit":
+                #print("break")          # debug message
                 break
             else:
                 fileName = dataReceived
+                print("fiename is {fnam}".format(fnam=fileName))  #debug message
 except:
     pass
 

@@ -24,3 +24,11 @@ I've changed default folders - images will now go to internalStorage/Photog on t
 
 I've included a script that will automatically download images from the phone to another PC over wifi network.  Enable FTP server on your phone, e.g. with Wifi FTP Server (https://play.google.com/store/apps/details?id=com.medhaapps.wififtpserver), then run this script in the folder you want the images to download to.  Must be run in a linux terminal (either on linux, or using WSL on windows).  Script will download photos then delete from the phone.
 
+***
+
+Blog post about the setup here: https://peterfalkingham.com/2020/04/25/extending-my-automated-arduino-photogrammetry-setup-to-include-a-dslr/
+
+Video: https://www.youtube.com/watch?v=Oujr5rMdfek&feature=emb_title
+
+An example photogrammetric model made with this setup: https://www.youtube.com/watch?v=3dESHP678II
+

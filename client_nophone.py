@@ -48,27 +48,27 @@ stepTime = ((60/(speed/4.4))/nPhotos)+2 #(the +2 gives a bit of leeway for other
 print("step time is {st}".format(st=stepTime))      #debug message
 
 socketList=[]
-for server in serverAddressList:
-    print("about to connect on {this}".format(this=server))
-    socketSendCommands = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  #Communicate with phone
-    socketSendCommands.connect((server,serverPort))                         #Communicate with phone
-    socketList.append(socketSendCommands)                                   #Communicate with phone
-    socketSendCommands.send(fileName.encode())                              #Communicate with phone
+#for server in serverAddressList:
+    #print("about to connect on {this}".format(this=server))
+    #socketSendCommands = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  #Communicate with phone
+    #socketSendCommands.connect((server,serverPort))                         #Communicate with phone
+    #socketList.append(socketSendCommands)                                   #Communicate with phone
+    #socketSendCommands.send(fileName.encode())                              #Communicate with phone
 
 #serialConnection.write(nPhotos) 
 
 for i in range(nPhotos):
-    serialConnection.write("go\n".encode())                                 #communicate ith arduino
-    time.sleep(stepTime)                                                    #wait appropriate period of time.
-    for socketSendCommands in socketList:                                   #Communicate with phone
-        socketSendCommands.send("chez".encode())                            #Communicate with phone
+    #for socketSendCommands in socketList:                                   #Communicate with phone
+     #   socketSendCommands.send("chez".encode())                            #Communicate with phone
         #print("sent chez\n")                                               #debug message
-    time.sleep(1)                                                           #wait - bit longer with phone camera
+    time.sleep(0.5)                                                         #wait
+    serialConnection.write("go\n".encode())                                 #communicate ith arduino
+    time.sleep(stepTime)
     print("Progress: {count}/{total}".format(count=i+1,total=nPhotos))      #output
 
 print("DONE!")
 time.sleep(1)
 serialConnection.close()
-for socketSendCommands in socketList:
-    socketSendCommands.send("quit".encode())
-    socketSendCommands.close()
+#for socketSendCommands in socketList:
+#    socketSendCommands.send("quit".encode())
+ #   socketSendCommands.close()
